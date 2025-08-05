@@ -61,7 +61,30 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Cyberpunk color extensions
+				cyber: {
+					green: 'hsl(var(--cyber-green))',
+					orange: 'hsl(var(--cyber-orange))',
+					pink: 'hsl(var(--cyber-pink))',
+					yellow: 'hsl(var(--cyber-yellow))',
 				}
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-cyber': 'var(--gradient-cyber)',
+				'gradient-threat': 'var(--gradient-threat)',
+				'gradient-success': 'var(--gradient-success)',
+			},
+			boxShadow: {
+				'cyber': 'var(--shadow-cyber)',
+				'threat': 'var(--shadow-threat)',
+				'success': 'var(--shadow-success)',
+				'glow-primary': 'var(--glow-primary)',
+				'glow-accent': 'var(--glow-accent)',
+			},
+			fontFamily: {
+				'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
