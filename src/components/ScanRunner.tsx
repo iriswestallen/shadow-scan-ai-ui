@@ -45,10 +45,10 @@ export function ScanRunner({ onScanStart }: ScanRunnerProps) {
           
           <div>
             <h2 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              ShadowScan Runner
+              Personal Privacy Scan
             </h2>
             <p className="text-muted-foreground mt-2">
-              AI-powered reconnaissance to discover exposed digital assets
+              AI-powered detection of your personal information exposure
             </p>
           </div>
         </div>
@@ -57,7 +57,7 @@ export function ScanRunner({ onScanStart }: ScanRunnerProps) {
           <div className="relative">
             <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-primary" />
             <Input
-              placeholder="Enter domain, IP, or URL to scan..."
+              placeholder="Enter email, username, or phone number..."
               value={target}
               onChange={(e) => setTarget(e.target.value)}
               className="pl-12 h-14 text-lg bg-secondary/50 border-border/50 focus:border-primary focus:ring-primary/20"
@@ -78,7 +78,7 @@ export function ScanRunner({ onScanStart }: ScanRunnerProps) {
             ) : (
               <div className="flex items-center gap-3">
                 <Search className="w-5 h-5" />
-                <span>Start Reconnaissance</span>
+                <span>Start Privacy Scan</span>
                 <Zap className="w-5 h-5" />
               </div>
             )}
@@ -97,19 +97,19 @@ export function ScanRunner({ onScanStart }: ScanRunnerProps) {
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div className="flex items-center gap-2 text-cyber-green">
                 <div className="w-2 h-2 bg-cyber-green rounded-full animate-pulse" />
-                <span>DNS Enumeration</span>
+                <span>Data Breach Search</span>
               </div>
               <div className="flex items-center gap-2 text-cyber-orange">
                 <div className="w-2 h-2 bg-cyber-orange rounded-full animate-pulse" />
-                <span>Port Discovery</span>
+                <span>Social Media Scan</span>
               </div>
               <div className="flex items-center gap-2 text-primary">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                <span>Asset Detection</span>
+                <span>Web Content Analysis</span>
               </div>
               <div className="flex items-center gap-2 text-accent">
                 <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                <span>AI Analysis</span>
+                <span>Dark Web Monitor</span>
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@ export function ScanRunner({ onScanStart }: ScanRunnerProps) {
 
         <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
           <AlertTriangle className="w-4 h-4" />
-          <span>Only scan assets you own or have permission to test</span>
+          <span>Only scan your own personal information</span>
         </div>
       </div>
     </Card>

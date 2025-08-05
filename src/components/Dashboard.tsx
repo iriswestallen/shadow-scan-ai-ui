@@ -14,36 +14,36 @@ import {
 
 const recentScans = [
   {
-    target: "company.com",
+    target: "john.doe@email.com",
     status: "completed",
-    assets: 23,
-    threats: 3,
+    exposures: 12,
+    sources: 3,
     timestamp: "2 minutes ago",
+    risk: "high"
+  },
+  {
+    target: "john_doe",
+    status: "running",
+    exposures: 4,
+    sources: 2,
+    timestamp: "5 minutes ago",
     risk: "medium"
   },
   {
-    target: "api.service.com",
-    status: "running",
-    assets: 8,
-    threats: 0,
-    timestamp: "5 minutes ago",
-    risk: "low"
-  },
-  {
-    target: "staging.app.io",
+    target: "+1-555-0123",
     status: "completed",
-    assets: 45,
-    threats: 7,
+    exposures: 2,
+    sources: 1,
     timestamp: "1 hour ago",
-    risk: "high"
+    risk: "low"
   }
 ];
 
-const riskDistribution = [
-  { level: "Critical", count: 5, color: "bg-destructive", percentage: 12 },
-  { level: "High", count: 12, color: "bg-cyber-orange", percentage: 28 },
-  { level: "Medium", count: 18, color: "bg-cyber-yellow", percentage: 42 },
-  { level: "Low", count: 8, color: "bg-cyber-green", percentage: 18 }
+const exposureCategories = [
+  { category: "Email Addresses", count: 8, color: "bg-destructive", percentage: 35, trend: "+2 new" },
+  { category: "Usernames", count: 12, color: "bg-cyber-orange", percentage: 28, trend: "+1 new" },
+  { category: "Phone Numbers", count: 3, color: "bg-cyber-yellow", percentage: 20, trend: "No change" },
+  { category: "Social Profiles", count: 15, color: "bg-cyber-green", percentage: 17, trend: "+3 new" }
 ];
 
 export function Dashboard() {
@@ -52,10 +52,10 @@ export function Dashboard() {
       {/* Header */}
       <div className="space-y-2">
         <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-          ShadowScan Dashboard
+          Your Digital Privacy Shield
         </h1>
         <p className="text-muted-foreground text-lg">
-          AI-powered digital asset reconnaissance and threat intelligence
+          AI-powered personal information exposure detection and protection
         </p>
       </div>
 
@@ -64,14 +64,14 @@ export function Dashboard() {
         <Card className="cyber-border bg-card/50 backdrop-blur-sm relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative">
-            <CardTitle className="text-sm font-medium">Total Scans</CardTitle>
-            <Globe className="h-4 w-4 text-primary" />
+            <CardTitle className="text-sm font-medium">Personal Scans</CardTitle>
+            <Shield className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent className="relative">
-            <div className="text-3xl font-bold text-primary">1,247</div>
+            <div className="text-3xl font-bold text-primary">47</div>
             <p className="text-xs text-muted-foreground">
               <TrendingUp className="inline w-3 h-3 mr-1" />
-              +12% from last month
+              +3 this week
             </p>
           </CardContent>
         </Card>
@@ -79,14 +79,14 @@ export function Dashboard() {
         <Card className="cyber-border bg-card/50 backdrop-blur-sm relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-cyber-green/10 to-transparent" />
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative">
-            <CardTitle className="text-sm font-medium">Assets Found</CardTitle>
-            <Eye className="h-4 w-4 text-cyber-green" />
+            <CardTitle className="text-sm font-medium">Data Exposures</CardTitle>
+            <Eye className="h-4 w-4 text-destructive" />
           </CardHeader>
           <CardContent className="relative">
-            <div className="text-3xl font-bold text-cyber-green">3,891</div>
+            <div className="text-3xl font-bold text-destructive">23</div>
             <p className="text-xs text-muted-foreground">
-              <TrendingUp className="inline w-3 h-3 mr-1" />
-              +23% from last month
+              <AlertTriangle className="inline w-3 h-3 mr-1" />
+              6 new this week
             </p>
           </CardContent>
         </Card>
@@ -94,14 +94,14 @@ export function Dashboard() {
         <Card className="cyber-border bg-card/50 backdrop-blur-sm relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-destructive/10 to-transparent" />
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative">
-            <CardTitle className="text-sm font-medium">Threats Detected</CardTitle>
-            <AlertTriangle className="h-4 w-4 text-destructive" />
+            <CardTitle className="text-sm font-medium">Sources Monitored</CardTitle>
+            <Globe className="h-4 w-4 text-cyber-green" />
           </CardHeader>
           <CardContent className="relative">
-            <div className="text-3xl font-bold text-destructive">43</div>
+            <div className="text-3xl font-bold text-cyber-green">1,247</div>
             <p className="text-xs text-muted-foreground">
               <TrendingUp className="inline w-3 h-3 mr-1" />
-              -8% from last month
+              +147 new sources
             </p>
           </CardContent>
         </Card>
@@ -109,14 +109,14 @@ export function Dashboard() {
         <Card className="cyber-border bg-card/50 backdrop-blur-sm relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent" />
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative">
-            <CardTitle className="text-sm font-medium">AI Accuracy</CardTitle>
-            <Zap className="h-4 w-4 text-accent" />
+            <CardTitle className="text-sm font-medium">Protection Score</CardTitle>
+            <CheckCircle className="h-4 w-4 text-accent" />
           </CardHeader>
           <CardContent className="relative">
-            <div className="text-3xl font-bold text-accent">94.7%</div>
+            <div className="text-3xl font-bold text-accent">87%</div>
             <p className="text-xs text-muted-foreground">
               <TrendingUp className="inline w-3 h-3 mr-1" />
-              +2.1% from last month
+              +5% this month
             </p>
           </CardContent>
         </Card>
@@ -128,7 +128,7 @@ export function Dashboard() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Clock className="w-5 h-5 text-primary" />
-              Recent Scans
+              Recent Personal Scans
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -142,7 +142,7 @@ export function Dashboard() {
                   <div>
                     <div className="font-medium">{scan.target}</div>
                     <div className="text-sm text-muted-foreground">
-                      {scan.assets} assets • {scan.threats} threats • {scan.timestamp}
+                      {scan.exposures} exposures • {scan.sources} sources • {scan.timestamp}
                     </div>
                   </div>
                 </div>
@@ -165,19 +165,22 @@ export function Dashboard() {
         <Card className="cyber-border bg-card/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Shield className="w-5 h-5 text-primary" />
-              Risk Distribution
+              <AlertTriangle className="w-5 h-5 text-primary" />
+              Exposure Categories
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            {riskDistribution.map((risk, index) => (
+            {exposureCategories.map((category, index) => (
               <div key={index} className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-medium">{risk.level}</span>
-                  <span className="text-sm text-muted-foreground">{risk.count} threats</span>
+                  <span className="font-medium">{category.category}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">{category.count} found</span>
+                    <span className="text-xs text-cyber-green">{category.trend}</span>
+                  </div>
                 </div>
                 <Progress 
-                  value={risk.percentage} 
+                  value={category.percentage} 
                   className="h-2"
                 />
               </div>

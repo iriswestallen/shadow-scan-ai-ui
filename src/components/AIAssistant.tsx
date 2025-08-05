@@ -27,24 +27,24 @@ const initialMessages: Message[] = [
   {
     id: "1",
     role: "assistant",
-    content: "Hello! I'm your AI cybersecurity assistant. I can help analyze scan results, suggest security improvements, and explain threat vectors. What would you like to know?",
+    content: "Hello! I'm your AI Privacy Guardian. I help you understand where your personal information is exposed online and provide actionable steps to protect your digital privacy. What would you like to know?",
     timestamp: new Date(Date.now() - 300000),
     type: "analysis"
   },
   {
     id: "2",
     role: "assistant",
-    content: "I've detected 3 high-risk vulnerabilities in your latest scan of company.com. The exposed S3 bucket contains sensitive configuration files that could lead to further compromise. Would you like me to generate a remediation plan?",
+    content: "🚨 I've found your email in 3 major data breaches, including LinkedIn (2021) where passwords were compromised. Your username 'john_doe_87' is also actively sharing personal info on 5 platforms. Let me help you secure these exposures.",
     timestamp: new Date(Date.now() - 120000),
     type: "alert"
   }
 ];
 
 const quickActions = [
-  { label: "Analyze Last Scan", icon: Brain, action: "analyze_scan" },
-  { label: "Risk Assessment", icon: Shield, action: "risk_assessment" },
-  { label: "Remediation Plan", icon: Lightbulb, action: "remediation" },
-  { label: "Threat Intelligence", icon: TrendingUp, action: "threat_intel" }
+  { label: "Analyze Exposures", icon: Brain, action: "analyze_scan" },
+  { label: "Privacy Assessment", icon: Shield, action: "risk_assessment" },
+  { label: "Protection Plan", icon: Lightbulb, action: "remediation" },
+  { label: "Breach Monitoring", icon: TrendingUp, action: "threat_intel" }
 ];
 
 export function AIAssistant() {
@@ -69,10 +69,10 @@ export function AIAssistant() {
     // Simulate AI response
     setTimeout(() => {
       const responses = [
-        "Based on the scan data, I've identified several patterns that suggest a potential supply chain vulnerability. The exposed Docker registries contain images with known CVEs.",
-        "The AI analysis shows a 94% confidence that this subdomain enumeration reveals a staging environment with default credentials. I recommend immediate credential rotation.",
-        "Cross-referencing with threat intelligence feeds, this IP range has been associated with recent APT campaign infrastructure. Enhanced monitoring recommended.",
-        "The machine learning model detected anomalous SSL certificate patterns that may indicate certificate transparency log manipulation attempts."
+        "Your email appears in the LinkedIn 2021 breach affecting 700M users. I recommend changing passwords for all accounts and enabling 2FA. Would you like specific steps for each platform?",
+        "I've detected your phone number in 3 public directories. Consider using a Google Voice number for online accounts and requesting removal from these directories.",
+        "Your username pattern suggests you were born in 1987. This makes you vulnerable to social engineering. I can help you create more secure usernames.",
+        "Your profile photo has been cached by 5 different websites. I can guide you through requesting removal and preventing future image indexing."
       ];
       
       const aiMessage: Message = {
@@ -90,10 +90,10 @@ export function AIAssistant() {
 
   const handleQuickAction = (action: string) => {
     const actionMessages: Record<string, string> = {
-      analyze_scan: "Please analyze the results from my latest scan and highlight any critical findings.",
-      risk_assessment: "Can you provide a comprehensive risk assessment for my current digital footprint?",
-      remediation: "Generate a step-by-step remediation plan for the detected vulnerabilities.",
-      threat_intel: "What's the latest threat intelligence relevant to my organization's attack surface?"
+      analyze_scan: "Please analyze my personal data exposures and highlight the most critical privacy risks.",
+      risk_assessment: "Can you provide a comprehensive privacy risk assessment for my digital footprint?",
+      remediation: "Generate a step-by-step plan to remove or secure my exposed personal information.",
+      threat_intel: "What's the latest information about data breaches that might affect me?"
     };
 
     if (actionMessages[action]) {
@@ -109,9 +109,9 @@ export function AIAssistant() {
             <Bot className="w-5 h-5 text-primary-foreground" />
           </div>
           <div>
-            <div className="text-lg font-bold">AI Assistant</div>
+            <div className="text-lg font-bold">AI Privacy Guardian</div>
             <div className="text-sm text-muted-foreground font-normal">
-              Powered by advanced threat intelligence
+              Your personal digital protection companion
             </div>
           </div>
           <Badge className="ml-auto bg-cyber-green/20 text-cyber-green border-cyber-green/30">
@@ -191,7 +191,7 @@ export function AIAssistant() {
         {/* Input */}
         <div className="flex gap-2">
           <Input
-            placeholder="Ask about vulnerabilities, get recommendations..."
+            placeholder="Ask about your privacy risks, get protection advice..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && !isTyping && handleSend()}

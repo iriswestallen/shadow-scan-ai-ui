@@ -28,46 +28,57 @@ import {
 const mockResults = [
   {
     id: "1",
-    asset: "api.company.com",
-    type: "API Endpoint",
+    asset: "john.doe@email.com",
+    type: "Email Address",
     risk: "critical",
-    description: "Exposed API with authentication bypass vulnerability",
-    ports: ["443", "80"],
-    services: ["nginx", "mongodb"],
+    description: "Found in 3 major data breaches with password exposure",
+    sources: ["LinkedIn 2021", "Adobe 2013", "Dropbox 2012"],
+    breaches: ["HaveIBeenPwned", "DeHashed", "BreachDirectory"],
     lastSeen: "2 minutes ago",
     score: 9.2
   },
   {
     id: "2",
-    asset: "staging.company.com",
-    type: "Web Application",
+    asset: "john_doe_87",
+    type: "Username",
     risk: "high",
-    description: "Staging environment with default credentials",
-    ports: ["443", "22"],
-    services: ["apache", "mysql"],
+    description: "Active on 5 platforms with personal information visible",
+    sources: ["Twitter", "Instagram", "GitHub", "Reddit"],
+    breaches: ["Gaming Forums", "Social Platforms"],
     lastSeen: "5 minutes ago",
     score: 7.8
   },
   {
     id: "3",
-    asset: "backup.s3.amazonaws.com",
-    type: "Cloud Storage",
+    asset: "+1-555-0123",
+    type: "Phone Number",
     risk: "medium",
-    description: "S3 bucket with public read access",
-    ports: ["443"],
-    services: ["s3"],
+    description: "Listed in public directories and old resume",
+    sources: ["Whitepages", "PDF Documents", "Company Directory"],
+    breaches: ["Public Records"],
     lastSeen: "10 minutes ago",
     score: 6.1
   },
   {
     id: "4",
-    asset: "dev.company.com",
-    type: "Development Server",
-    risk: "low",
-    description: "Development server with proper security headers",
-    ports: ["443"],
-    services: ["nginx"],
+    asset: "123.45.67.89",
+    type: "IP Address",
+    risk: "high",
+    description: "Home IP linked to personal gaming accounts",
+    sources: ["Gaming Forums", "VPN Logs", "Torrent Sites"],
+    breaches: ["Gaming Service Leak"],
     lastSeen: "15 minutes ago",
+    score: 8.1
+  },
+  {
+    id: "5",
+    asset: "profile_photo.jpg",
+    type: "Personal Image",
+    risk: "low",
+    description: "Profile photo found in cached web pages",
+    sources: ["LinkedIn Cache", "Company Website Archive"],
+    breaches: ["None"],
+    lastSeen: "1 hour ago",
     score: 3.2
   }
 ];
@@ -84,11 +95,11 @@ const getRiskColor = (risk: string) => {
 
 const getAssetIcon = (type: string) => {
   switch (type) {
-    case "API Endpoint": return Globe;
-    case "Web Application": return Globe;
-    case "Cloud Storage": return Cloud;
-    case "Development Server": return Server;
-    case "Database": return Database;
+    case "Email Address": return Globe;
+    case "Username": return Shield;
+    case "Phone Number": return AlertTriangle;
+    case "IP Address": return Server;
+    case "Personal Image": return Eye;
     default: return Globe;
   }
 };
@@ -114,9 +125,9 @@ export function ScanResults() {
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              Scan Results
+              Personal Data Exposure Report
             </h2>
-            <p className="text-muted-foreground">company.com reconnaissance complete</p>
+            <p className="text-muted-foreground">john.doe@email.com privacy scan complete</p>
           </div>
           <div className="flex gap-2">
             <Button variant="outline" size="sm" className="bg-secondary/50">
@@ -135,7 +146,7 @@ export function ScanResults() {
           <Card className="cyber-border bg-card/50 backdrop-blur-sm">
             <CardContent className="p-4 text-center">
               <div className="text-2xl font-bold text-primary">{totalAssets}</div>
-              <div className="text-sm text-muted-foreground">Total Assets</div>
+              <div className="text-sm text-muted-foreground">Data Types</div>
             </CardContent>
           </Card>
           
@@ -177,8 +188,8 @@ export function ScanResults() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="text-lg font-semibold">Overall Risk Score</h3>
-                <p className="text-sm text-muted-foreground">AI-calculated based on threat severity and exposure</p>
+                <h3 className="text-lg font-semibold">Privacy Risk Score</h3>
+                <p className="text-sm text-muted-foreground">AI-calculated based on exposure severity and breach impact</p>
               </div>
               <div className="text-right">
                 <div className="text-3xl font-bold text-destructive">{riskScore}/10</div>
@@ -197,18 +208,18 @@ export function ScanResults() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Eye className="w-5 h-5 text-primary" />
-            Discovered Assets
+            Personal Data Exposures
           </CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow className="border-border/50">
-                <TableHead>Asset</TableHead>
+                <TableHead>Personal Data</TableHead>
                 <TableHead>Type</TableHead>
                 <TableHead>Risk Level</TableHead>
                 <TableHead>Score</TableHead>
-                <TableHead>Services</TableHead>
+                <TableHead>Sources</TableHead>
                 <TableHead>Last Seen</TableHead>
                 <TableHead>Actions</TableHead>
               </TableRow>
@@ -256,11 +267,16 @@ export function ScanResults() {
                     </TableCell>
                     <TableCell>
                       <div className="flex flex-wrap gap-1">
-                        {result.services.map((service, idx) => (
-                          <Badge key={idx} variant="outline" className="text-xs bg-primary/10 text-primary border-primary/30">
-                            {service}
+                        {result.sources.slice(0, 2).map((source, idx) => (
+                          <Badge key={idx} variant="outline" className="text-xs bg-destructive/10 text-destructive border-destructive/30">
+                            {source}
                           </Badge>
                         ))}
+                        {result.sources.length > 2 && (
+                          <Badge variant="outline" className="text-xs bg-muted/10 text-muted-foreground border-muted/30">
+                            +{result.sources.length - 2} more
+                          </Badge>
+                        )}
                       </div>
                     </TableCell>
                     <TableCell className="text-sm text-muted-foreground">

@@ -24,10 +24,10 @@ const Index = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const navigationItems = [
-    { id: "dashboard", label: "Dashboard", icon: Shield },
-    { id: "scan", label: "Scan Runner", icon: Zap },
-    { id: "results", label: "Results", icon: Eye },
-    { id: "ai", label: "AI Assistant", icon: Brain },
+    { id: "dashboard", label: "Privacy Shield", icon: Shield },
+    { id: "scan", label: "Personal Scan", icon: Zap },
+    { id: "results", label: "Exposure Report", icon: Eye },
+    { id: "ai", label: "AI Guardian", icon: Brain },
     { id: "settings", label: "Settings", icon: Settings },
   ];
 
@@ -58,10 +58,10 @@ const Index = () => {
                   <Shield className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                    ShadowScan
-                  </h1>
-                  <p className="text-xs text-muted-foreground">AI-Powered Recon</p>
+                <h1 className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                  ShadowScan
+                </h1>
+                <p className="text-xs text-muted-foreground">Privacy Guardian</p>
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ const Index = () => {
               
               <TabsContent value="scan" className="mt-0">
                 <div className="max-w-2xl mx-auto">
-                  <ScanRunner onScanStart={(target) => console.log("Scanning:", target)} />
+                  <ScanRunner onScanStart={(target) => console.log("Scanning personal data for:", target)} />
                 </div>
               </TabsContent>
               
@@ -150,7 +150,7 @@ const Index = () => {
                     <Settings className="w-16 h-16 mx-auto text-primary" />
                     <h2 className="text-2xl font-bold">Settings Panel</h2>
                     <p className="text-muted-foreground">
-                      Configure your ShadowScan preferences, API keys, and security settings.
+                      Configure your privacy settings, notification preferences, and data retention policies.
                     </p>
                   </div>
                 </Card>
