@@ -6,6 +6,7 @@ import { Shield, Search, Zap, Globe, AlertTriangle } from "lucide-react";
 
 interface ScanRunnerProps {
   onScanStart?: (target: string) => void;
+  demoMode?: boolean;
 }
 
 export function ScanRunner({ onScanStart }: ScanRunnerProps) {

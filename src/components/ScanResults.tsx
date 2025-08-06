@@ -104,7 +104,11 @@ const getAssetIcon = (type: string) => {
   }
 };
 
-export function ScanResults() {
+interface ScanResultsProps {
+  demoMode?: boolean;
+}
+
+export function ScanResults({ demoMode }: ScanResultsProps) {
   const [filter, setFilter] = useState("all");
   const [sortBy, setSortBy] = useState("score");
 
